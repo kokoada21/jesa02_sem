@@ -1,6 +1,6 @@
 - name: Create new ec2 instance
   hosts: localhost
-  connection: local
+  connection:
 
   tasks:
     - name: Launch EC2 Instance
