@@ -117,4 +117,4 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
         run: |
-          ansible-playbook $GITHUB_WORKSPACE/ec2_deploy/ec2_launch.yml --user ec2-user --private-key EC2_SEM_KEY.pem
+          ansible-playbook $GITHUB_WORKSPACE/ec2_deploy/ec2_deploy.yml --user ec2-user --key-file EC2_SEM_KEY.pem
