@@ -1,4 +1,5 @@
 ## Installation Guide
+
 - Install GIT - https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
 - Install Docker - https://www.docker.com/products/docker-desktop
 
@@ -8,6 +9,7 @@
 - NPM
 
 ## Build/Run
+
 - Source code of the React app is based on "react-shopping-cart" app made under MIT license by Jefferson Ribeiro
 
 #### Requirements
@@ -33,3 +35,5 @@ npm run test
 The MIT License (MIT). Please see License File for more information.
 
 Try to trigger
+
+Change
