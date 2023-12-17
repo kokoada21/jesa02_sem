@@ -34,6 +34,7 @@
       loop: '{{ ec2_instance_result.instances }}'
 
 - name: Log contents of 'launched' variable
+  hosts: localhost
   gather_facts: false
   tasks:
     - debug:
