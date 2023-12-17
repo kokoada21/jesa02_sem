@@ -101,4 +101,4 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y ansible
 
       - name: Run Ansible playbook
-        run: ansible-playbook -i localhost, ec2_deploy/ec2_deploy.yml --extra-vars "access_key=${{ secrets.AWS_ACCESS_KEY_ID }}" --extra-vars "secret_key=${{ secrets.AWS_SECRET_ACCESS_KEY }}" --extra-vars "session_token=${{ secrets.AWS_SESSION_TOKEN }}"
+        run: ansible-playbook -i localhost, $GITHUB_WORKSPACE/ec2_deploy/ec2_deploy.yml --extra-vars "access_key=${{ secrets.AWS_ACCESS_KEY_ID }}" --extra-vars "secret_key=${{ secrets.AWS_SECRET_ACCESS_KEY }}" --extra-vars "session_token=${{ secrets.AWS_SESSION_TOKEN }}"
