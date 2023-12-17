@@ -104,8 +104,8 @@ jobs:
 
       - name: Install dependencies
         run: |
-          sudo apt-get update
-          sudo apt-get install -y python3-pip
+          sudo yum install git
+          sudo yum install -y python3-pip
           pip3 install ansible boto boto3
 
       - name: Decode .pem file from Base64
