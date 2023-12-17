@@ -1,13 +1,13 @@
 - name: Create new ec2 instance
   hosts: localhost
-  connection:
+  connection: local
 
   tasks:
     - name: Launch EC2 Instance
       ec2_instance:
         instance_type: t2.medium
         image_id: ami-0759f51a90924c166
-        region: us-east-1
+        region: us-east-1d
         key_name: EC2_SEM_KEY
         vpc_subnet_id: subnet-02debf8c477b0df78
         network:
