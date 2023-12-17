@@ -34,40 +34,41 @@
       loop: '{{ ec2_instance_result.instances }}'
 
 - name: Configure EC2
-  hosts: localhost
-  connection: ssh
-
+  hosts: launched
+  become: true
   tasks:
     - name: Install git and docker
-      yum:
+      apt:
         name:
           - git
-          - docker
+          - docker.io
         state: latest
         update_cache: yes
-      become: yes
-    - service:
+
+    - name: Start and enable Docker service
+      systemd:
         name: docker
         state: started
         enabled: yes
-      become: yes
-    - name: Start docker on startup
-      shell: systemctl enable docker
-      become: yes
+
     - name: Set rights to docker
-      shell: usermode -a -G docker ec2-user
-      become: yes
+      command: usermod -aG docker ec2-user
+
     - name: Get eshop from GIT
       git:
-        repo: 'https://github.com/kokoada21/jesa02_sem.git'
+        repo: 'https://github.com/kokoada21/jesa02_devops.git'
         dest: ./app
+
     - name: Build docker with eshop
-      shell: cd app && docker build -t myeshop:latest .
-      become: yes
+      command: >
+        docker build -t myeshop:latest .
+      args:
+        chdir: ./app
+
     - name: Run docker with eshop
-      shell: docker run -p 80:3000 myeshop
+      command: docker run -p 80:3000 myeshop
       async: 45
       poll: 0
-      become: yes
+
     - wait_for:
         port: 80
