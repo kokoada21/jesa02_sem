@@ -11,7 +11,7 @@ jobs:
       - name: Code checkout
         uses: actions/checkout@v4.1.1
         with:
-          token: ${{ secrets.WORKFLOW_TOKEN_SEM_SEM }}
+          token: ${{ secrets.WORKFLOW_TOKEN_SEM }}
 
       - name: Setup NodeJS
         uses: actions/setup-node@v4.0.0
