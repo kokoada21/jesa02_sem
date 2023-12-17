@@ -90,3 +90,15 @@ jobs:
       - name: Run tests
         run: |
           npm run test -- --colors -u
+
+  Deploy:
+  needs: [Build, Test]
+  if: ${{ github.ref == 'refs/heads/main' }}
+  runs-on: ubuntu-latest
+
+  steps:
+    - name: Install Ansible
+      run: sudo apt-get update && sudo apt-get install -y ansible
+
+    - name: Run Ansible playbook
+      run: ansible-playbook -i localhost, ./ec2_deploy.yml --extra-vars "access_key=${{ secrets.AWS_ACCESS_KEY_ID }}" --extra-vars "secret_key=${{ secrets.AWS_SECRET_ACCESS_KEY }}" --extra-vars "session_token=${{ secrets.AWS_SESSION_TOKEN }}"
