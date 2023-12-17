@@ -35,6 +35,7 @@
 
 - name: Configure EC2
   hosts: all:launched
+  connection: ssh
   become: true
   tasks:
     - name: Install git and docker
