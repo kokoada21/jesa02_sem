@@ -109,7 +109,7 @@ jobs:
           pip3 install ansible boto boto3
 
       - name: Decode .pem file from Base64
-        run: echo "${{ secrets.EC2_SEM_KEY_BASE64 }}" | base64 --decode > EC2_SEM_KEY.pem
+        run: echo "${{ secrets.EC2_SEM_KEY2_BASE64 }}" | base64 --decode > EC2_SEM_KEY2.pem
 
       - name: Launch ec2 and deploy
         env:
@@ -117,4 +117,4 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
         run: |
-          ansible-playbook $GITHUB_WORKSPACE/ec2_deploy/ec2_deploy.yml --user ec2-user --key-file EC2_SEM_KEY.pem
+          ansible-playbook $GITHUB_WORKSPACE/ec2_deploy/ec2_deploy.yml --user ec2-user --key-file EC2_SEM_KEY2.pem
