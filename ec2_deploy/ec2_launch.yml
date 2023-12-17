@@ -33,15 +33,8 @@
         timeout: 300
       loop: '{{ ec2_instance_result.instances }}'
 
-- name: Log contents of 'launched' variable
-  hosts: localhost
-  gather_facts: false
-  tasks:
-    - debug:
-        var: launched
-
 - name: Configure EC2
-  hosts: launched
+  hosts: all:launched
   become: true
   tasks:
     - name: Install git and docker
